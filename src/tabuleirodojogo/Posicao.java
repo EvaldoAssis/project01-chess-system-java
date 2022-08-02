@@ -1,5 +1,4 @@
-package Tabuleiro;
-
+package tabuleirodojogo;
 
 /*Essa classe pertence a camada de tabuleiro e representa uma posicao no tabuleiro*/
 
