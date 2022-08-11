@@ -36,4 +36,11 @@ public class Tabuleiro {
 		return pecas[posicao.getLinha()][posicao.getColuna()];
 	}
 	
+	//Esse metodo vai  na matriz de pecas do tabuleiro na linha e coluna especificada
+	//e atribuir a posição da matriz de peça, a peça que veio como argumento
+	public void colocarPeca(Peca peca, Posicao posicao) {
+		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
+		peca.posicao = posicao;
+	}
+	
 }

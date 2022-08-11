@@ -12,7 +12,7 @@ public class PecaXadrez extends Peca {
 		this.cor = cor;
 	}
 	
-	//Não possui método SET porque a cor só pode ser acessada
+	//Não possui método SET porque a cor só pode ser acessada e não trocada
 	public Cores getCor() {
 		return cor;
 	}
