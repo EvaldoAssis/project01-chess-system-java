@@ -17,8 +17,7 @@ public class Tabuleiro {
 		pecas = new Peca[linhas][colunas];
 	}
 
-	// Linhas e Colunas não possui método set, pois depois de criado um tabuleiro
-	// não pode ser alterado
+	/*Linhas e Colunas não possui método set, pois depois de criado um tabuleiro não pode ser alterado */
 
 	public int getLinhas() {
 		return linhas;

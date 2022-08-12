@@ -32,12 +32,17 @@ public class PartidaXadrez {
 		}
 		return mat;
 	}
+
+	/*Colocando as peças no tabuleiro com as coordenadas do Xadrez*/
+	private void colocarNovaPeca(char coluna, int linha, PecaXadrez peca) {
+		tabuleiro.colocarPeca(peca, new PosicaoXadrez(coluna, linha).posicionar());
+	}
 	
 	//Método responsável por iniciar a partida de xadrez, colocando as peças no tabuleiro
 	private void inicialSetup() {
-		tabuleiro.colocarPeca(new Torre(tabuleiro, Cores.WHITE), new Posicao(2, 1));
-		tabuleiro.colocarPeca(new Rei(tabuleiro, Cores.BLACK), new Posicao(2, 4));
-		tabuleiro.colocarPeca(new Rei(tabuleiro, Cores.WHITE), new Posicao(7, 4));
+		colocarNovaPeca('b', 6, new Torre(tabuleiro, Cores.WHITE));
+		colocarNovaPeca('e', 8, new Rei(tabuleiro, Cores.BLACK));
+		colocarNovaPeca('e', 1, new Rei(tabuleiro, Cores.WHITE));
 	}
 
 }
