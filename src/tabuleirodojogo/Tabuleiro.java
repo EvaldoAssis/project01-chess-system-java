@@ -50,6 +50,19 @@ public class Tabuleiro {
 		pecas[posicao.getLinha()][posicao.getColuna()] = peca;
 		peca.posicao = posicao;
 	}
+	
+	public Peca removePeca(Posicao posicao) {
+		if (!posicaoExiste(posicao)) {
+			throw new TabuleiroException("Posição inexistente no tabuleiro");
+		}
+		if (peca(posicao) == null) {
+			return null;
+		}
+		Peca aux = peca(posicao);
+		aux.posicao = null;
+		pecas[posicao.getLinha()][posicao.getColuna()] = null;
+		return aux;
+	}
 
 	/*
 	 * Esse método se trta de um método auxiliar que testa se uma posição existe no
@@ -73,7 +86,7 @@ public class Tabuleiro {
 	 */
 	public boolean existePeca(Posicao posicao) {
 		if (!posicaoExiste(posicao)) {
-			throw new TabuleiroException("Posição não existente no tabuleiro");
+			throw new TabuleiroException("Posição inexistente no tabuleiro");
 		}
 		return peca(posicao) != null;
 	}

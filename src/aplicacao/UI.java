@@ -1,9 +1,11 @@
 package aplicacao;
 
-import tabuleirodojogo.Peca;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import xadrez.Cores;
-import xadrez.PartidaXadrez;
 import xadrez.PecaXadrez;
+import xadrez.PosicaoXadrez;
 
 public class UI {
 
@@ -32,6 +34,25 @@ public class UI {
 	public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+	
+	/*Esse metodo é utilizado para ler a posição do xadrez, funciona da seguinte maneira: 
+	 * Ele recebe como argumento o que foi lido no Scanner do programa principal
+	 * Recorta a String recebida para pegar a coluna desejada usando o chartAt(0) (pega a primeira letra da String)
+	 * Recorta o String a partir da posição 1 e converte para inteiro para pegar a linha
+	 * O método recebe uma nova posição xadrez, recebendo a coluna e a linha citadas anteriormente
+	 * Lança uma excessão se houver entrada de dados inválida*/
+	public static PosicaoXadrez lerPosicaoXadrez(Scanner sc) {
+		try {
+			String s = sc.nextLine();
+			//
+			char coluna = s.charAt(0);
+			//
+			int linha = Integer.parseInt(s.substring(1));
+			return new PosicaoXadrez(coluna, linha);	
+		}catch (Exception e) {
+			throw new InputMismatchException("Erro para ler posição do xadrez. Valores válidos são de A1 até H8.");
+		}
+	}
 
 	public static void printTabuleiro(PecaXadrez[][] pecas) {
 		for (int i = 0; i < pecas.length; i++) {
@@ -53,7 +74,7 @@ public class UI {
         }
         else {
             if (peca.getCor() == Cores.WHITE) {
-                System.out.print(ANSI_WHITE + peca + ANSI_RESET);
+                System.out.print(ANSI_RED + peca + ANSI_RESET);
             }
             else {
                 System.out.print(ANSI_YELLOW + peca + ANSI_RESET);

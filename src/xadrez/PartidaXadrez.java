@@ -1,9 +1,9 @@
 package xadrez;
 
-import java.awt.Color;
-
+import tabuleirodojogo.Peca;
 import tabuleirodojogo.Posicao;
 import tabuleirodojogo.Tabuleiro;
+import tabuleirodojogo.TabuleiroException;
 import xadrez.pecas.Rei;
 import xadrez.pecas.Torre;
 
@@ -31,6 +31,39 @@ public class PartidaXadrez {
 			}
 		}
 		return mat;
+	}
+	
+	/* Esse metódo recebe um posição de origem e uma posição de destino
+	 * Após isso, as posições passadas no argumento são convertidas para uma posição da matriz usando o método posicionar()
+	 * A posição de origem é validada pelo método validarPosicaoOrigem()
+	 * A variavél capturarPeca recebe o resultado a operação moverPeca() que recebe a posição de origem e de destino, já no formato de matriz
+	 * Por fim, o método retorna a posição capturada, porém é feito um downcasting para PecaXadrez porque a peça capturada era do tipo Peca
+	 * */
+	public PecaXadrez executarMovimentoXadrez(PosicaoXadrez posicaoOrigem, PosicaoXadrez posicaoDestino) {
+		Posicao origem = posicaoOrigem.posicionar();
+		Posicao destino = posicaoDestino.posicionar();
+		validarPosicaoOrigem(origem);
+		Peca capturarPeca = moverPeca(origem, destino);
+		return (PecaXadrez) capturarPeca;
+	}
+	
+	/*Esse método recebe uma posição de origem e outra de destino
+	 * Primeiramente é criado uma variavel do tipo Peca que recebe a peça que está na posição de origem
+	 * Depois é declarada uma outra peça que recebe a peça que possivelmente estava/esta na posição de destino
+	 * Por fim é retornada a peça capturada
+	 * */
+	private Peca moverPeca(Posicao origem, Posicao destino) {
+		Peca p = tabuleiro.removePeca(origem);
+		Peca capturarPeca = tabuleiro.removePeca(destino);
+		tabuleiro.colocarPeca(p, destino);
+		return capturarPeca;
+	}
+	
+	/*Esse método testa se determinada peça de origem existe em determinada posição*/
+	private void validarPosicaoOrigem(Posicao posicao) {
+		if (!tabuleiro.existePeca(posicao)) {
+			throw new TabuleiroException("Não existe peça na posição de origem");
+		}
 	}
 
 	/*Colocando as peças no tabuleiro com as coordenadas do Xadrez*/
