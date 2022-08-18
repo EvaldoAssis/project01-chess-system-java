@@ -35,6 +35,12 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 	
+	// https://stackoverflow.com/questions/2979383/java-clear-the-console
+	public static void clearScreen() {  
+        System.out.print("\033[H\033[2J");
+        System.out.flush(); 
+	}
+	
 	/*Esse metodo é utilizado para ler a posição do xadrez, funciona da seguinte maneira: 
 	 * Ele recebe como argumento o que foi lido no Scanner do programa principal
 	 * Recorta a String recebida para pegar a coluna desejada usando o chartAt(0) (pega a primeira letra da String)
