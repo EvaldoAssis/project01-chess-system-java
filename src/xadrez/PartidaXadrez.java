@@ -64,6 +64,9 @@ public class PartidaXadrez {
 		if (!tabuleiro.existePeca(posicao)) {
 			throw new XadrezException("Não existe peça na posição de origem");
 		}
+		if (!tabuleiro.peca(posicao).existeMovimentoPosivel()) {
+			throw new XadrezException("Não existe movimentos possíveis para a peça escolhida");
+		}
 	}
 
 	/*Colocando as peças no tabuleiro com as coordenadas do Xadrez*/

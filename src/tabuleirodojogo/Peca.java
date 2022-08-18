@@ -1,9 +1,11 @@
 package tabuleirodojogo;
 
+import java.util.Iterator;
+
 /*Essa classe Peça possui uma posição protected, isso porque este tipo de posição não se trata da posição no xadrez
  *  e sim de uma posicao simples de matriz. Não queremos que essa posição seja visivel na camada de xadrez, então será protected*/
 
-public class Peca {
+public abstract class Peca {
 	
 	protected Posicao posicao;
 	private Tabuleiro tabuleiro;
@@ -20,5 +22,24 @@ public class Peca {
 	protected Tabuleiro getTabuleiro() {
 		return tabuleiro;
 	}	
+	
+	public abstract boolean[][] movimentosPosiveis();
+	
+	public boolean possivelMovimento(Posicao posicao) {
+		//Método concreto usando método abstrato
+		return movimentosPosiveis()[posicao.getLinha()][posicao.getColuna()];
+	}
+	
+	public boolean existeMovimentoPosivel() {
+		boolean[][] mat = movimentosPosiveis();
+		for (int i = 0; i < mat.length; i++) {
+			for (int j = 0; j < mat.length; j++) {
+				if (mat[i][j]) {
+					return true;
+				}
+			}
+		}
+		return false;		
+	}
 	
 }
